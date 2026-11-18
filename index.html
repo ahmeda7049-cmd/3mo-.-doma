@@ -3,90 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>3mo.doma - 50 Levels</title>
+<title>3mo.doma</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:#05080f;color:#fff;font-family:system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:10px}
-h1{font-size:38px;letter-spacing:2px;text-shadow:0 0 22px #22ff88;margin:6px 0 2px}
-h1 span{color:#22ff88}
-.sub{color:#9aa7b8;font-size:13px;margin-bottom:10px}
-.hud{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;width:min(94vw,560px);margin-bottom:10px}
-.card{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:8px 6px;text-align:center;flex:1;min-width:92px}
-.card b{display:block;font-size:17px;color:#22ff88}
-.card small{color:#9aa7b8;font-size:11px}
-#wrap{position:relative;width:min(94vw,560px);aspect-ratio:1/1;background:#0a101c;border:2px solid #22ff8855;border-radius:20px;overflow:hidden;box-shadow:0 0 35px #22ff8822}
-canvas{width:100%;height:100%;display:block;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:28px 28px}
-.overlay{position:absolute;inset:0;background:rgba(2,6,12,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px;z-index:5}
-.overlay h2{font-size:30px}
-.overlay p{color:#cbd5e1;line-height:1.7;font-size:14px}
-.btn{background:#22c55e;color:#04120a;border:0;padding:14px 28px;border-radius:999px;font-weight:900;font-size:18px;cursor:pointer;box-shadow:0 0 22px #22ff8855;width:100%;max-width:300px}
-.btn2{background:#1f2937;color:#fff;border:1px solid #374151}
-.btn:active{transform:scale(.97)}
-.progress{width:min(94vw,560px);height:8px;background:#1f2937;border-radius:99px;overflow:hidden;margin-bottom:10px}
-.progress div{height:100%;background:#22ff88;width:2%;transition:width .3s}
-.small{font-size:12px;color:#94a3b8}
-.hint{margin-top:10px;color:#64748b;font-size:12px;text-align:center;line-height:1.6}
-/* البليه - الجويستيك الحر */
-#joyZone{margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:8px}
-#joy{width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 50% 35%, #1e293b, #0f172a);border:3px solid #22ff8866;position:relative;touch-action:none;box-shadow:0 0 25px #22ff8833, inset 0 0 20px rgba(0,0,0,.6)}
-#knob{width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #4ade80, #16a34a 60%, #14532d);position:absolute;left:44px;top:44px;box-shadow:0 6px 18px rgba(0,0,0,.5), 0 0 20px #22ff88;transition: left .05s, top .05s; display:flex;align-items:center;justify-content:center;font-size:22px}
-#joyLabel{font-size:13px;color:#94a3b8}
-#joyHint{font-size:11px;color:#64748b}
+body{background:#060a12;color:#fff;font-family:system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.top{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
+.logo{font-size:28px;font-weight:900;letter-spacing:1px}.logo span{color:#22ff88}
+.lang{display:flex;background:#111827;border:1px solid #1f2937;border-radius:999px;overflow:hidden}
+.lang button{border:0;padding:8px 14px;background:transparent;color:#9aa7b8;font-weight:700;cursor:pointer}
+.lang button.active{background:#22c55e;color:#000}
+.icons{display:flex;gap:8px}.icons button{width:38px;height:38px;border-radius:10px;background:#111827;border:1px solid #1f2937;color:#fff;font-size:18px}
+.stats{width:100%;max-width:560px;display:flex;justify-content:space-between;padding:6px 16px;border-bottom:1px solid #111827}
+.stats div{text-align:center}.stats b{display:block;font-size:20px}.stats small{color:#9aa7b8;font-size:12px}
+#wrap{position:relative;width:min(94vw,520px);aspect-ratio:1/1;background:#0a1526;border:2px solid #22ff8855;border-radius:20px;overflow:hidden;margin-top:14px;box-shadow:0 0 30px #22ff8822}
+canvas{width:100%;height:100%;display:block;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:26px 26px}
+.overlay{position:absolute;inset:0;background:rgba(2,6,12,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;z-index:5}
+.overlay h2{font-size:44px}.overlay h2 span{color:#22ff88}
+.btn{background:#22ff88;color:#04120a;border:0;padding:16px 20px;border-radius:16px;font-weight:900;font-size:20px;cursor:pointer;width:100%;max-width:340px;box-shadow:0 0 25px #22ff8855}
+.btn2{background:#1f2937;color:#fff;border:1px solid #374151;margin-top:8px}
+.mini{display:flex;gap:20px}.mini div{text-align:center}.mini b{color:#22ff88;font-size:18px}
+.bottom{width:100%;max-width:560px;display:flex;justify-content:space-between;align-items:flex-end;padding:16px}
+.best{text-align:left}.best b{color:#22ff88}.best small{color:#9aa7b8}
+#joy{width:150px;height:150px;border-radius:50%;background:#0f172a;border:2px solid #22ff8855;position:relative;touch-action:none;box-shadow:0 0 25px #22ff8822}
+#joy .arr{position:absolute;color:#22ff88;font-size:20px;font-weight:900;opacity:.7}
+#joy .up{top:6px;left:50%;transform:translateX(-50%)}
+#joy .down{bottom:6px;left:50%;transform:translateX(-50%)}
+#joy .left{left:10px;top:50%;transform:translateY(-50%)}
+#joy .right{right:10px;top:50%;transform:translateY(-50%)}
+#joyInner{width:92px;height:92px;border-radius:50%;border:1px solid #22ff8833;position:absolute;left:29px;top:29px}
+#knob{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#4ade80,#16a34a 60%,#14532d);position:absolute;left:47px;top:47px;box-shadow:0 0 22px #22ff88;display:flex;align-items:center;justify-content:center;z-index:2}
+#knobDot{width:14px;height:14px;background:#22ff88;border-radius:50%;box-shadow:0 0 12px #22ff88}
 </style>
 </head>
 <body>
-<h1>3mo<span>.doma</span> 🐍</h1>
-<div class="sub">50 ليفل • بيحفظ تقدمك • بليه حرة 360°</div>
-<div class="hud">
-  <div class="card"><b id="score">0</b><small>Score النقاط</small></div>
-  <div class="card"><b id="level">1 / 50</b><small>Level الليفل</small></div>
-  <div class="card"><b id="time">60</b><small>Time الوقت</small></div>
-  <div class="card"><b id="apples">0 / 3</b><small>Apples التفاح</small></div>
-  <div class="card"><b id="best">0</b><small>Best أحسن نتيجة</small></div>
-</div>
-<div class="progress"><div id="bar"></div></div>
-<div id="wrap">
-  <canvas id="game" width="560" height="560"></canvas>
-  <div class="overlay" id="home">
-    <div style="font-size:52px">🐍</div>
-    <h2 style="font-size:42px">3mo<span style="color:#22ff88">.doma</span></h2>
-    <p>التعبان بيلعب لوحده في الخلفية 🤖<br>50 ليفل - كل ليفل أصعب من اللي قبله</p>
-    <p class="small" id="saveInfo">مفيش حفظ قديم</p>
-    <button class="btn" id="continueBtn" style="display:none" onclick="continueGame()">▶ كمل من الليفل اللي وقفت فيه</button>
-    <button class="btn" onclick="startNew()">🚀 ابدأ / START</button>
-    <button class="btn btn2" onclick="startNew()">🔄 لعبة جديدة من الأول</button>
-    <p class="small">كمبيوتر: أسهم / WASD • موبايل: البليه اللي تحت</p>
+<div class="top">
+  <div class="logo">3mo<span>.doma</span></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <div class="icons"><button>🔊</button><button>🔗</button></div>
+    <div class="lang"><button class="active">عربي</button><button>English</button></div>
   </div>
-  <div class="overlay" id="levelDone" style="display:none">
-    <div style="font-size:50px">🎉</div><h2>Level Complete!</h2><p id="levelDoneText"></p>
-    <button class="btn" onclick="goNextLevel()">التالي Next Level ➜</button>
+</div>
+<div class="stats">
+  <div><small>النقاط</small><b id="score">6650</b></div>
+  <div><small>المستوى</small><b><span id="level" style="color:#22ff88">7</span>/50</b></div>
+  <div><small>التفاح</small><b><span id="apples" style="color:#f87171">0</span>/6</b></div>
+  <div><small>الوقت</small><b id="time">1:03</b></div>
+</div><div id="wrap">
+  <canvas id="game" width="520" height="520"></canvas>
+  <div class="overlay" id="home">
+    <h2>3mo<span>.doma</span></h2>
+    <p>المستويات 1-4 للتدريب السهل، ثم 46 مستوى<br>متصاعد بفخاخ متحركة.</p>
+    <div class="mini">
+      <div><small>أعلى نتيجة</small><br><b>7,220</b></div>
+      <div><small>المستوى</small><br><b>7 / 50</b></div>
+      <div><small>إجمالي التفاح</small><br><b>50</b></div>
+    </div>
+    <button class="btn" onclick="startNew()">▶ ابدأ / START</button>
+    <button class="btn btn2" onclick="share()">🔗 إرسال رابط التطبيق</button>
+    <p style="font-size:12px;color:#64748b">اسحب على اللوحة أو استخدم عصا التحكم</p>
   </div>
   <div class="overlay" id="overScreen" style="display:none">
     <h2>Game Over 💔</h2><p id="overText"></p>
-    <button class="btn" onclick="retryLevel()">🔄 حاول تاني Retry</button>
+    <button class="btn" onclick="retryLevel()">🔄 حاول تاني</button>
     <button class="btn btn2" onclick="showHome()">🏠 الرئيسية</button>
   </div>
-  <div class="overlay" id="winScreen" style="display:none">
-    <div style="font-size:60px">🏆👑</div><h2>خلصت الـ 50 ليفل كلهم!</h2>
-    <p>انت أسطورة بجد! 🔥<br><span id="winText"></span></p>
-    <button class="btn" onclick="startNew()">العب تاني من الأول</button>
+  <div class="overlay" id="levelDone" style="display:none">
+    <h2>Level Complete! 🎉</h2><p id="levelDoneText"></p>
+    <button class="btn" onclick="goNextLevel()">التالي ➜</button>
   </div>
 </div>
 
-<!-- البليه -->
-<div id="joyZone">
-  <div id="joy"><div id="knob">🟢</div></div>
-  <div id="joyLabel">حرك البليه بصباعك في أي اتجاه 👆</div>
-  <div id="joyHint">شدها فوق / تحت / يمين / شمال / مايل - التعبان هيمشي وراها ناعم</div>
+<div class="bottom">
+  <div id="joy">
+    <div class="arr up">▲</div><div class="arr down">▼</div><div class="arr left">◀</div><div class="arr right">▶</div>
+    <div id="joyInner"></div>
+    <div id="knob"><div id="knobDot"></div></div>
+  </div>
+  <div class="best">
+    <div>الأفضل: <b>7,220</b></div>
+    <div style="color:#9aa7b8;font-size:13px;margin-top:6px">اسحب على اللوحة أو استخدم عصا التحكم</div>
+  </div>
 </div>
-<div class="hint">كل تفاحة = 10 نقاط 🍎 • خلص التفاح قبل الوقت<br>تقدمك بيتحفظ لوحده</div>
 
 <script>
 const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
-const GRID=20,CELL=28;
-let snake=[],dir={x:1,y:0},nextDir={x:1,y:0},apple,obstacles=[];
-let score=0,level=1,applesEaten=0,applesNeeded=3,timeLeft=60,running=false,demo=true,raf,last=0,acc=0,totalApples=0,bestTime=0;
-let save=JSON.parse(localStorage.getItem('doma_50_save')||'{}');
-let best=save.best||0, savedLevel=save.level||1, savedTotal=save.totalApples||0, savedBestTime=save.bestTime||0;
-totalApples=savedTotal; bestTime=savedBestTime;
-function levelConfig(l){return{speed:Math.max(70,175-(l-1)*2.2),needed:Math.min(20,2+l),time:Math.max(22,68-(l-1)*1.1),obCount:l<=2?0
+const GRID=20,CELL=26;
+let snake=[],dir={x:1,y:0},nextDir={x:1,y:0},apple,obstacles=[],stars=[];
+let score=6650,level=7,applesEaten=0,applesNeeded=6,timeLeft=63,running=false,demo=true,raf,last=0,acc=0;
+function fmt(t){let m=Math.floor(t/60),s=Math.floor(t%60);return m+':'+(s<10?'0'+s:s)}
+function updateHUD(){document.getElementById('score').textContent=score;document.getElementById('level').textContent=level;document.getElementById('apples').textContent=applesEaten;document.getElementById('time').textContent=fmt(Math.max(0,timeLeft))}
+function levelConfig(l){return{speed:Math.max(70,175-(l-1)*2.2),needed:Math.min(12,2+l),time:Math.max(45,90-(l-1)*2),obCount:l<=4?0:Math.min(12,2+Math.floor(l/2))}}
+function randomCell(){return{x:Math.floor(Math.random()*GRID),y:Math.floor(Math.random()*GRID)}}
+function spawnApple(){do{apple=randomCell()}while(snake.some(s=>s.x===apple.x&&s.y===apple.y)||obstacles.some(o=>o.x===apple.x&&o.y===apple.y))}
+function makeObstacles(n){obstacles=[];stars=[];for(let i=0;i<n;i++){let c;do{c=randomCell()}while(Math.abs(c.x-10)<3&&Math.abs(c.y-10)<3);obstacles.push({x:c.x,y:c.y})}for(let i=0;i<2;i++){stars.push(randomCell())}}
+function setupLevel(l){let cfg=levelConfig(l);applesNeeded=cfg.needed;applesEaten=0;timeLeft=cfg.time;snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10},{x:7,y:10},{x:6,y:10}];dir={x:1,y:0};nextDir={x:1,y:0};makeObstacles(cfg.obCount);spawnApple();updateHUD()}
+function hideAll(){['home','overScreen','levelDone'].forEach(id=>document.getElementById(id).style.display='none')}
+function startNew(){demo=false;hideAll();setupLevel(level);running=true;last=performance.now();acc=0;cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+function retryLevel(){demo=false;hideAll();setupLevel(level);running=true;last=performance.now();acc=0;cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+function goNextLevel(){hideAll();level++;setupLevel(level);running=true;last=performance.now();acc=0;cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+function showHome(){running=false;demo=true;hideAll();document.getElementById('home').style.display='flex';setupDemo()}
+function share(){let url=location.href;if(navigator.share)navigator.share({title:'3mo.doma',url});else{prompt('انسخ اللينك:',url)}}<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>3mo.doma</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#060a12;color:#fff;font-family:system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.top{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
+.logo{font-size:28px;font-weight:900;letter-spacing:1px}.logo span{color:#22ff88}
+.lang{display:flex;background:#111827;border:1px solid #1f2937;border-radius:999px;overflow:hidden}
+.lang button{border:0;padding:8px 14px;background:transparent;color:#9aa7b8;font-weight:700;cursor:pointer}
+.lang button.active{background:#22c55e;color:#000}
+.icons{display:flex;gap:8px}.icons button{width:38px;height:38px;border-radius:10px;background:#111827;border:1px solid #1f2937;color:#fff;font-size:18px}
+.stats{width:100%;max-width:560px;display:flex;justify-content:space-between;padding:6px 16px;border-bottom:1px solid #111827}
+.stats div{text-align:center}.stats b{display:block;font-size:20px}.stats small{color:#9aa7b8;font-size:12px}
+#wrap{position:relative;width:min(94vw,520px);aspect-ratio:1/1;background:#0a1526;border:2px solid #22ff8855;border-radius:20px;overflow:hidden;margin-top:14px;box-shadow:0 0 30px #22ff8822}
+canvas{width:100%;height:100%;display:block;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:26px 26px}
+.overlay{position:absolute;inset:0;background:rgba(2,6,12,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;z-index:5}
+.overlay h2{font-size:44px}.overlay h2 span{color:#22ff88}
+.btn{background:#22ff88;color:#04120a;border:0;padding:16px 20px;border-radius:16px;font-weight:900;font-size:20px;cursor:pointer;width:100%;max-width:340px;box-shadow:0 0 25px #22ff8855}
+.btn2{background:#1f2937;color:#fff;border:1px solid #374151;margin-top:8px}
+.mini{display:flex;gap:20px}.mini div{text-align:center}.mini b{color:#22ff88;font-size:18px}
+.bottom{width:100%;max-width:560px;display:flex;justify-content:space-between;align-items:flex-end;padding:16px}
+.best{text-align:left}.best b{color:#22ff88}.best small{color:#9aa7b8}
+#joy{width:150px;height:150px;border-radius:50%;background:#0f172a;border:2px solid #22ff8855;position:relative;touch-action:none;box-shadow:0 0 25px #22ff8822}
+#joy .arr{position:absolute;color:#22ff88;font-size:20px;font-weight:900;opacity:.7}
+#joy .up{top:6px;left:50%;transform:translateX(-50%)}
+#joy .down{bottom:6px;left:50%;transform:translateX(-50%)}
+#joy .left{left:10px;top:50%;transform:translateY(-50%)}
+#joy .right{right:10px;top:50%;transform:translateY(-50%)}
+#joyInner{width:92px;height:92px;border-radius:50%;border:1px solid #22ff8833;position:absolute;left:29px;top:29px}
+#knob{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#4ade80,#16a34a 60%,#14532d);position:absolute;left:47px;top:47px;box-shadow:0 0 22px #22ff88;display:flex;align-items:center;justify-content:center;z-index:2}
+#knobDot{width:14px;height:14px;background:#22ff88;border-radius:50%;box-shadow:0 0 12px #22ff88}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="logo">3mo<span>.doma</span></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <div class="icons"><button>🔊</button><button>🔗</button></div>
+    <div class="lang"><button class="active">عربي</button><button>English</button></div>
+  </div>
+</div>
+<div class="stats">
+  <div><small>النقاط</small><b id="score">6650</b></div>
+  <div><small>المستوى</small><b><span id="level" style="color:#22ff88">7</span>/50</b></div>
+  <div><small>التفاح</small><b><span id="apples" style="color:#f87171">0</span>/6</b></div>
+  <div><small>الوقت</small><b id="time">1:03</b></div>
+</div>
