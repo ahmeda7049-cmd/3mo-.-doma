@@ -64,6 +64,16 @@ export interface Translations {
   levelsTitle: string;
   showJoystickTitle: string;
   hideJoystickTitle: string;
+  shareAppTitle: string;
+  shareModalTitle: string;
+  shareModalDesc: string;
+  shareMessageText: (url: string) => string;
+  copyLink: string;
+  linkCopied: string;
+  sendWhatsApp: string;
+  sendEmail: string;
+  emailSubject: string;
+  shareViaDevice: string;
   paceLabel: (englishLabel: string) => string;
 }
 
@@ -162,6 +172,16 @@ const EN: Translations = {
   levelsTitle: 'Levels',
   showJoystickTitle: 'Show Joystick',
   hideJoystickTitle: 'Hide Joystick',
+  shareAppTitle: 'Send App Link',
+  shareModalTitle: 'Send 3mo.doma Link',
+  shareModalDesc: 'Open this link on your phone or share it with friends to play or install the app.',
+  shareMessageText: (url) => `Play 3mo.doma Snake Game (50 levels & offline mode): ${url}`,
+  copyLink: 'Copy Link',
+  linkCopied: 'Copied!',
+  sendWhatsApp: 'Send via WhatsApp',
+  sendEmail: 'Send via Email',
+  emailSubject: '3mo.doma Snake Game Link',
+  shareViaDevice: 'Share via Apps',
   paceLabel: (label) => label,
 };
 
@@ -260,6 +280,16 @@ const AR: Translations = {
   levelsTitle: 'المستويات',
   showJoystickTitle: 'إظهار عصا التحكم',
   hideJoystickTitle: 'إخفاء عصا التحكم',
+  shareAppTitle: 'إرسال رابط التطبيق',
+  shareModalTitle: 'إرسال رابط لعبة 3mo.doma',
+  shareModalDesc: 'أرسل هذا الرابط لهاتفك أو لأصدقائك لفتح اللعبة وتثبيتها مباشرة.',
+  shareMessageText: (url) => `جرّب لعبة الثعبان 3mo.doma (٥٠ مستوى وتعمل بدون إنترنت): ${url}`,
+  copyLink: 'نسخ الرابط',
+  linkCopied: 'تم النسخ!',
+  sendWhatsApp: 'إرسال عبر واتساب',
+  sendEmail: 'إرسال عبر البريد الإلكتروني',
+  emailSubject: 'رابط لعبة 3mo.doma',
+  shareViaDevice: 'مشاركة عبر تطبيقات الجهاز',
   paceLabel: (label) => {
     switch (label) {
       case 'Training':

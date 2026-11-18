@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { GameHud } from './components/GameHud';
 import { GameOverlays } from './components/GameOverlays';
 import { OfflineIndicator } from './components/OfflineIndicator';
+import { ShareAppModal } from './components/ShareAppModal';
 import { VirtualJoystick } from './components/VirtualJoystick';
 import { SnakeGameEngine } from './game/engine';
 import { getTranslations } from './game/i18n';
@@ -47,6 +48,7 @@ export default function App() {
   const [lang, setLang] = useState<Language>(() => loadSavedProgress().language);
   const [muted, setMuted] = useState<boolean>(() => soundEngine.isMuted());
   const [showDesktopJoystick, setShowDesktopJoystick] = useState<boolean>(false);
+  const [shareModalOpen, setShareModalOpen] = useState<boolean>(false);
   const [boardSize, setBoardSize] = useState<number>(520);
 
   const t = getTranslations(lang);
@@ -273,6 +275,14 @@ export default function App() {
     setShowDesktopJoystick((prev) => !prev);
   }, []);
 
+  const handleOpenShare = useCallback(() => {
+    soundEngine.playClick();
+    if (engineRef.current?.getStatus() === 'PLAYING') {
+      engineRef.current.togglePause();
+    }
+    setShareModalOpen(true);
+  }, []);
+
   const timerRatio = hud.timeLimit > 0 ? Math.max(0, Math.min(1, hud.timeRemaining / hud.timeLimit)) : 0;
   const timerBarColor =
     hud.status === 'PLAYING' && hud.timeRemaining <= 5
@@ -296,6 +306,7 @@ export default function App() {
         onToggleDesktopJoystick={handleToggleDesktopJoystick}
         onGoHome={handleGoHome}
         onOpenLevels={handleOpenLevelSelect}
+        onOpenShare={handleOpenShare}
       />
 
       {/* Main Arena Stage */}
@@ -345,6 +356,7 @@ export default function App() {
               onRetryLevel={handleRetryLevel}
               onResume={handleResume}
               onNextLevel={handleNextLevel}
+              onOpenShare={handleOpenShare}
             />
           </div>
         </div>
@@ -403,6 +415,11 @@ export default function App() {
       </footer>
 
       <OfflineIndicator t={t} />
+      <ShareAppModal
+        open={shareModalOpen}
+        t={t}
+        onClose={() => setShareModalOpen(false)}
+      />
     </div>
   );
 }

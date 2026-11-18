@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Grid, Play, RotateCcw, Trophy } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Grid, Play, RotateCcw, Share2, Trophy } from 'lucide-react';
 import { Translations } from '../game/i18n';
 import { HudSnapshot, Language } from '../game/types';
 import { LevelSelectScreen } from './LevelSelectScreen';
@@ -14,6 +14,7 @@ interface GameOverlaysProps {
   onRetryLevel: () => void;
   onResume: () => void;
   onNextLevel: () => void;
+  onOpenShare: () => void;
 }
 
 function formatBestTime(seconds: number | null): string {
@@ -32,6 +33,7 @@ export function GameOverlays({
   onRetryLevel,
   onResume,
   onNextLevel,
+  onOpenShare,
 }: GameOverlaysProps) {
   if (hud.status === 'PLAYING') {
     return null;
@@ -106,6 +108,15 @@ export function GameOverlays({
           >
             <Play className="w-5 h-5 fill-current shrink-0" />
             <span>{t.startButton}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={onOpenShare}
+            className="mt-2.5 w-full inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl bg-[#131C2B] hover:bg-[#1A263A] border border-white/12 text-slate-200 text-xs sm:text-sm font-semibold whitespace-nowrap shrink-0 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22FF88]"
+          >
+            <Share2 className="w-4 h-4 text-[#22FF88] shrink-0" />
+            <span>{t.shareAppTitle}</span>
           </button>
 
           <p className="mt-3.5 text-[11px] sm:text-xs text-slate-400">

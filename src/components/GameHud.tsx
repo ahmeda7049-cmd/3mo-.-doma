@@ -1,4 +1,4 @@
-import { Gamepad2, Grid, Home, Pause, Play, Volume2, VolumeX } from 'lucide-react';
+import { Gamepad2, Grid, Home, Pause, Play, Share2, Volume2, VolumeX } from 'lucide-react';
 import { Translations } from '../game/i18n';
 import { HudSnapshot, Language } from '../game/types';
 import { PWAInstallButton } from './PWAInstallButton';
@@ -15,6 +15,7 @@ interface GameHudProps {
   onToggleDesktopJoystick: () => void;
   onGoHome: () => void;
   onOpenLevels: () => void;
+  onOpenShare: () => void;
 }
 
 function formatTimer(seconds: number): string {
@@ -36,6 +37,7 @@ export function GameHud({
   onToggleDesktopJoystick,
   onGoHome,
   onOpenLevels,
+  onOpenShare,
 }: GameHudProps) {
   const isPlayingOrPaused = hud.status === 'PLAYING' || hud.status === 'PAUSED';
   const isInSession = hud.status !== 'START';
@@ -172,6 +174,16 @@ export function GameHud({
           </div>
 
           <PWAInstallButton t={t} />
+
+          <button
+            type="button"
+            onClick={onOpenShare}
+            aria-label={t.shareAppTitle}
+            title={t.shareAppTitle}
+            className="inline-flex items-center justify-center h-9 w-9 sm:h-10 sm:w-10 rounded-lg bg-[#0F1623] border border-white/10 text-[#22FF88] hover:text-white hover:border-[#22FF88]/40 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22FF88]"
+          >
+            <Share2 className="w-4 h-4" />
+          </button>
 
           {isPlayingOrPaused && (
             <button
